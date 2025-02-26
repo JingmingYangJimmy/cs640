@@ -1,0 +1,51 @@
+Q2: I am assuming the average latency is L1 + L2 + L3, which is 80.178 + 20.443 + 60.536 = 161.157, since latency is accumulated through each switches,
+the actual average latency  is 161.223, it is a little higher than my expectations. I am guessing there are some latency when transmitting within each switches.
+So the total latency is a little higher.   
+
+For the throughput, it is probably the average of L1 , L2, and L3.
+For sent throughput from my guess, it is (23.832 + 42.895 + 32.49)/3= 33.07 
+For received throughput from my guess, it is (18.91+37.97+28.342)/3=28.407
+The actual sent throughput is 22.575. Received is 18.524. The average throughput is 20.5495. It is way lower than my expectations. I think for the throughput, we can not use the average to estiamte. 
+My better guess: It is better to use the lowest value from L1, L2, and L3 since it is better to use bottleneck segment. since the slowest segment cna not handle more data than
+its throughput. 
+A better estimation should be sent: 23.832, received : 18.91. The average is 21.371. It is similar to the actual throughput. 
+
+
+
+Q3: two pairs: h8 - h4 h7 - h9
+for the first pair(h8 h4), the sent throughput is 17.999, received throughput is 12.883. 
+for the second pair(h7 h9), the sent throughput is 7.971, received throughput is 5.836.
+The whole average throughput is 11.17
+The throughput for communicating in 2 pairs is slower than communicating alone (half), since they all share the same pipe, everyone will get usually half of the space to transfer
+
+the rtt for first pair is 160.991, for second pair is 161.181 the average one is 161.086
+The rtt is doubled for communicating with 2 pairs than in 1 pair. The reason is that they share the network resources and there are the queuing delays 
+
+
+
+three paris:h8 - h4 h7 - h9 h1 - h10
+for the first pair(h8 h4), the sent throughput is 17.672 , received throughput is 13.116 
+for the second pair(h7 h9), the sent throughput is 6.078 , received throughput is 4.728
+for the third pair(h1 h10), the sent throughput is 1.987 , received throughput is 1.887
+The total average throughput is 7.578, it is one in three of the single transmission. Since three things are sharing the same pipe simultaneously. 
+ 
+the rtt for the first pair is 161.043 , for the second pair is 161.012 , for the third pair is 163.437 
+The total average for rtt is 161.83, it is similar to the rtt in two pairs. It probably because the network buffer can remian consistently utilized.
+
+
+
+Q4:
+h1-h4:
+My prediction: rtt is 160.991 since it is s1 to s4. THe throughput is 15, since for h8-h4, h7-h9, the throughput is 11.17
+Now we are h1-h4 and h5-h6, h5-h6 is a little shorter, so the throughput needs to be higher
+
+The actual rtt is 161.203, the sent throughput is 21.570 , received throughput is 18.017. The average throughput is 19.7935 
+
+
+h5-h6:
+My prediction: rtt is 53 (160/3) since h5 -h6 is 1 in 3 of h1- h4, but the actual one is lower than it, probably there is some delay on the switches.
+The throughput prediction is 23, sinec for L4 and L5, the received throughput are both near 23, but the actual one is 20.553, probably there is some delay.
+
+The actual rtt is 41.115, the sent throughput is 22.076, received throughput is 19.030. The average throughput is 20.553
+
+
